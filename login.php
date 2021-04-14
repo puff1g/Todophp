@@ -2,41 +2,50 @@
 
 session_start();
 
-	include("connection.php");
-	include("functions.php");
+include("connection.php");
+include("functions.php");
+if(true)
+{
 
-
-	if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
+	echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
+		
 		//something was posted
 		$user_name = $_POST['user_name'];
 		$password = $_POST['password'];
 
 		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
 		{
-
+			
 			//read from database
-			$query = "select * from users where user_name = '$user_name' limit 1";
+			echo $user_name;
+			echo $password;
+			
+			$query = "SELECT * FROM tke_user WHERE user_name = '$user_name' limit 1";
 			$result = mysqli_query($con, $query);
-
-			if($result)
-			{
+			
 				if($result && mysqli_num_rows($result) > 0)
 				{
-
+					
 					$user_data = mysqli_fetch_assoc($result);
+					echo $user_data;
 					
 					if($user_data['password'] === $password)
 					{
 
-						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: index.php");
-						die;
+						$_SESSION['user_id'] = $user_data['id'];
 					}
+					// echo "Password correct";
+					header("Location: index.php");
+					die;
 				}
-			}
+				else{
+					
+					echo "Password false";
+				}
 			
-			echo "wrong username or password!";
+			
 		}else
 		{
 			echo "wrong username or password!";
@@ -54,7 +63,8 @@ session_start();
 <body>
 
 	<style type="text/css">
-	
+	*{
+	}
 	#text{
 
 		height: 25px;
