@@ -31,7 +31,7 @@ echo '</pre>';
 					$user_data = mysqli_fetch_assoc($result);
 					echo $user_data;
 					
-					if($user_data['password'] === $password)
+					if($user_data['password'] === hash('sha256', $password))
 					{
 
 						$_SESSION['user_id'] = $user_data['id'];
