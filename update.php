@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include 'php/update.php'; ?>
 <!DOCTYPE html>
 <html>

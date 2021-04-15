@@ -5,7 +5,12 @@ session_start();
 	include("functions.php");
 
 	$user_data = check_login($con);
-
+	
+	/* if (!isset($_SESSION['user_id']))
+{
+    header("Location: login.php");
+    die();
+} */
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +25,6 @@ session_start();
 	<div class="container">
 		<form action="php/create.php" 
     method="post">
-            
 		<h4 class="display-4 text-center">Create</h4><hr><br>
 		<?php if (isset($_GET['error'])) { ?>
 		<div class="alert alert-danger" role="alert">
@@ -56,5 +60,7 @@ session_start();
 	</form>
 	
 	</div>
+	
+	<h1>Welcome to <?php echo $_SESSION ['user_id']; ?> <a href="logout.php">Logout</a> <----- Here!</h1>
 </body>
 </html>
