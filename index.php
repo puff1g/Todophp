@@ -16,6 +16,7 @@ session_start();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 	<div class="container">
 		<form action="php/create.php" 
     method="post">
@@ -53,6 +54,7 @@ session_start();
 	name="create">Create</button>
 	<a href="read.php" class="link-primary">View</a>
 	</form>
+	
 	</div>
 </body>
 </html>
