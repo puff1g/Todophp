@@ -1,76 +1,70 @@
-* {
-  margin: 0px;
-  padding: 0px;
+body, input {
+  color: #363639;
 }
 
-body {
-  font-size: 120%;
-  background: #F8F8FF;
+a {
+  text-decoration: none;
+  border-bottom: 1px dashed #363639;
 }
 
-.header {
-  width: 30%;
-  margin: 50px auto 0px;
-  color: white;
-  background: #5F9EA0;
-  text-align: center;
-  border: 1px solid #B0C4DE;
-  border-bottom: none;
-  border-radius: 10px 10px 0px 0px;
+.list {
+  background-color: #fff;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 500px;
   padding: 20px;
+  border-radius: 2px;
+  box-shadow: 3pxs 3px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
-form, .content {
-  width: 30%;
-  margin: 0px auto;
-  padding: 20px;
-  border: 1px solid #B0C4DE;
-  background: white;
-  border-radius: 0px 0px 10px 10px;
+.list .header {
+  margin: 0 0 10px 0;
 }
 
-.input-group {
-  margin: 10px 0px 10px 0px;
+.items {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
-.input-group label {
-  display: block;
-  text-align: left;
-  margin: 3px;
+.items li:hover .done-button {
+  opacity: 1;
 }
 
-.input-group input {
-  height: 30px;
-  width: 93%;
+.items .item.done {
+  text-decoration: line-through;
+}
+
+.items li .item-add .input {
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+  padding: 15px;
+}
+
+.input {
+  opacity: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.done-button {
+  display: inline-block;
+  font-size: 0.8em;
+  background-color: #d9dfe1;
+  color: 363639;
+  padding: 3px 6px;
+  border: 0;
+  opacity: 0.4;
+}
+
+.submit {
+  background-color: #fff;
   padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid gray;
-}
-
-.btn {
-  padding: 10px;
-  font-size: 15px;
-  color: white;
-  background: #5F9EA0;
-  border: none;
-  border-radius: 5px;
-}
-
-.error {
-  width: 92%;
-  margin: 0px auto;
-  padding: 10px;
-  border: 1px solid #a94442;
-  color: #a94442;
-  background: #f2dede;
-  border-radius: 5px;
-  text-align: left;
-}
-
-.success {
-  color: #3c763d;
-  background: #dff0d8;
-  border: 1px solid #3c763d;
-  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-top: 10px;
+  box-shadow: 3px 3px;
 }

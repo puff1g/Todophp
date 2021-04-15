@@ -1,24 +1,13 @@
 <?php
+/* mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) */
 
+    session_start();
 
-    class DBcon{
+    $_SESSION['user_id'] = 1;
 
-        protected $connection;
-        public function __construct() {
-            $this->$connection = mysqli_connect("134.209.231.83", "playground_user", "fU5Jib9MF6");
-            $this->get_connection();
-        }
-        public function get_connection(){
+    $db = new PDO('mysql:dbname=playground_db;host=134.209.231.83', 'playground_user', 'fU5Jib9MF6');
 
-            if (!$this->$connection) {
-                return "failed con: " . mysqli_connect_error();
-            }
-            else{
-                return true;
-            }
-
-        }
-        
+    if(!isset($_SESSION['user_id'])){
+        die('u no allowed');
     }
-
 ?>
