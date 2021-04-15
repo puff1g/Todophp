@@ -1,54 +1,58 @@
 <?php 
 session_start();
+
 	include("connection.php");
 	include("functions.php");
 
 	$user_data = check_login($con);
 
-/* Prevent SQL injection!! */
-	$itemsQuery = $con->prepare("SELECT id, name, done, FROM tke_lists WHERE user = :user");
-
-	$itemsQuery->execute(['user' => $_SESSION['user_id']]);
-
-	foreach($items as $item) {
-		echo $item['name'], '<br>';
-	}
-
-	
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My website</title>
+	<title>Create</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	Hello, <?php echo $user_data['user_name']; ?>
-	<a href="logout.php">Logout</a>
+	<div class="container">
+		<form action="php/create.php" 
+    method="post">
+            
+		<h4 class="display-4 text-center">Create</h4><hr><br>
+		<?php if (isset($_GET['error'])) { ?>
+		<div class="alert alert-danger" role="alert">
+			<?php echo $_GET['error']; ?>
+		</div>
+		<?php } ?>
+		<div class="form-group">
+    <label for="name">Name</label>
+    <input type="name" 
+        class="form-control" 
+        id="name" 
+        name="name" 
+        value="<?php if(isset($_GET['name']))
+        echo($_GET['name']); ?>" 
+        placeholder="Enter name">
+		</div>
 
-	<div class="list">
-		<h1 class="header"> To do</h1>
-		<?php if(!empty($items)): ?>
-		<ul class="items">
-			<?php foreach($items as $item): ?>
-				<li>
-					<span class="item<?php echo $item['done'] ? 'done':'' ?>"><?php echo $item['name']; ?></span>
-					<?php if(!$item['done']): ?>
-					<a href="mark.php?as=done&item=<?php echo $item['id']; ?>" class="done-button">Mark as donzo</a>
-						<?php endif; ?>
-				</li>
-			<?php endforeach; ?>
-			<li>
-				
-		</li>
-		</ul>
-		<?php else: ?>
-			<p>u have no items</p>
-			<?php endif; ?>
-		<form action="add.php" mothod="post">
-			<input type="text" name="name" placeholder="Type something" class="input" autocomplete="off" required>
-			<input type="submit" value="Add" class="submit">
-		</form>
+		<div class="form-group">
+		<label for="location">location</label>
+		<input type="location" 
+		class="form-control" 
+		id="location" 
+		name="location" 
+		value="<?php if(isset($_GET['location']))
+			echo($_GET['location']); ?>"
+		placeholder="Enter location">
+		</div>
+
+	<button type="submit" 
+	class="btn btn-primary"
+	name="create">Create</button>
+	<a href="read.php" class="link-primary">View</a>
+	</form>
 	</div>
 </body>
 </html>
