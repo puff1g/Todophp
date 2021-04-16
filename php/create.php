@@ -1,5 +1,5 @@
 <?php 
-
+include "functions.php";
 if (isset($_POST['create'])) {
 	include "../connection.php";
 	function validate($data){
