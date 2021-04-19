@@ -44,21 +44,21 @@ function random_num($length)
 	return $text;
 }
 
-function encrypt($string, $key=5) {
+function encrypt($location, $key=5) {
 	$result = '';
-	for($i=0, $k= strlen($string); $i<$k; $i++) {
-		$char = substr($string, $i, 1);
+	for($i=0, $k= strlen($location); $i<$k; $i++) {
+		$char = substr($location, $i, 1);
 		$keychar = substr($key, ($i % strlen($key))-1, 1);
 		$char = chr(ord($char)+ord($keychar));
 		$result .= $char;
 	}
 	return base64_encode($result);
 }
-function decrypt($string, $key=5) {
+function decrypt($location, $key=5) {
 	$result = '';
-	$string = base64_decode($string);
-	for($i=0,$k=strlen($string); $i< $k ; $i++) {
-		$char = substr($string, $i, 1);
+	$location = base64_decode($location);
+	for($i=0,$k=strlen($location); $i< $k ; $i++) {
+		$char = substr($location, $i, 1);
 		$keychar = substr($key, ($i % strlen($key))-1, 1);
 		$char = chr(ord($char)-ord($keychar));
 		$result.=$char;
