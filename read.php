@@ -1,6 +1,22 @@
 <?php include "php/read.php"; ?>
 <?php include "functions.php"; ?>
 
+<?php
+
+	function decrypt($location, $key=5) {
+		$result = '';
+		$location = base64_decode($location);
+		for($i=0,$k=strlen($location); $i< $k ; $i++) {
+			$char = substr($location, $i, 1);
+			$keychar = substr($key, ($i % strlen($key))-1, 1);
+			$char = chr(ord($char)-ord($keychar));
+			$result.=$char;
+		}
+		return $result;
+	}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +52,7 @@
 		<tr>
 			<th scope="row"><?=$i?></th>
 			<td><?=$rows['name']?></td>
-			<td><?php echo $rows['location']; ?></td>
+			<td><?php echo decrypt($rows['location']); ?></td>
 			<td><a href="update.php?id=<?=$rows['id']?>" 
 			class="btn btn-success">Update</a>
 

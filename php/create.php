@@ -21,7 +21,7 @@ if (isset($_POST['create'])) {
 	}else {
 
     $sql = "INSERT INTO tke_lists(name, location) 
-            VALUES('$name', '$location')";
+            VALUES('$name', '".encrypt($location)."')";
     $result = mysqli_query($con, $sql);
     if ($result) {
     header("Location: ../read.php?success=successfully created");
@@ -31,3 +31,17 @@ if (isset($_POST['create'])) {
 	}
 
 }
+
+
+function encrypt($location, $key=5) {
+	$result = '';
+	for($i=0, $k= strlen($location); $i<$k; $i++) {
+		$char = substr($location, $i, 1);
+		$keychar = substr($key, ($i % strlen($key))-1, 1);
+		$char = chr(ord($char)+ord($keychar));
+		$result .= $char;
+	}
+	return base64_encode($result);
+}
+
+

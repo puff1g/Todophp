@@ -43,25 +43,3 @@ function random_num($length)
 
 	return $text;
 }
-
-function encrypt($location, $key=5) {
-	$result = '';
-	for($i=0, $k= strlen($location); $i<$k; $i++) {
-		$char = substr($location, $i, 1);
-		$keychar = substr($key, ($i % strlen($key))-1, 1);
-		$char = chr(ord($char)+ord($keychar));
-		$result .= $char;
-	}
-	return base64_encode($result);
-}
-function decrypt($location, $key=5) {
-	$result = '';
-	$location = base64_decode($location);
-	for($i=0,$k=strlen($location); $i< $k ; $i++) {
-		$char = substr($location, $i, 1);
-		$keychar = substr($key, ($i % strlen($key))-1, 1);
-		$char = chr(ord($char)-ord($keychar));
-		$result.=$char;
-	}
-	return $result;
-}
